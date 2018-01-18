@@ -89,11 +89,11 @@ TODO
 
 what we need is something like [this](http://nz.element14.com/infineon/bts500801teaauma1/power-load-sw-high-side-30v-to/dp/2480567)
 
-given time constraints, i wonder if [this](https://www.jaycar.co.nz/solid-state-relay-4-32vdc-input-30vdc-100a-switching/p/SY4086) works?
+given time constraints, i wonder if [this](https://electronics.stackexchange.com/questions/64798/can-an-arduino-use-a-12-v-relay) or [this](http://henrysbench.capnfatz.com/henrys-bench/arduino-output-devices/tip122-arduino-relay-tutorial/) works?
 
 ### 12v to 5v step-down (buck) converter
 
-[step down dc-dc 9A converter (constant volts or constant amps), 5~40v input & 1.5~35v out](https://www.trademe.co.nz/Browse/Listing.aspx?id=1521227419)
+[step down dc-dc 9A converter (constant volts or constant amps), 5\~40v input & 1.5\~35v out](https://www.trademe.co.nz/Browse/Listing.aspx?id=1521227419)
 
 ## calculations
 
