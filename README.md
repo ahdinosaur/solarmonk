@@ -1,12 +1,12 @@
 # solarmonk
 
-energy powered by the sun
+energy powered by the sun ☀️
 
-safely store energy in a battery
+safely store energy in a battery 🔋
 
-safely use excess load energy to power 5v devices
+safely use excess load energy to power 5v devices ⚡
 
-have fun!
+have fun! 🎉
 
 ## TODO
 
@@ -23,18 +23,16 @@ have fun!
 
 [120w maxray folding solar panel](http://maxray.com.au/folding-solar-panel/)
 
-```
-Max Power: 	120W
-Maximum Power Tolerance: 	±3%
-Open-Circuit Voltage/Voc（V）: 	17.5V
-Short-Circuit Current/lsc（A）: 	9.42
-Max Power Voltage/Vmp（V）: 	14.0
-Max Power Current/lmp（A）: 	8.57
-Power Spectications at STC: 	1000w/㎡，AM1.5,CELL25℃
-Max System Voltage（V）: 	1000
-Max Over Current Protecting Rating（A）: 	15
-Weight: 	12.6kg
-```
+- Max Power: 120W
+- Maximum Power Tolerance: ±3%
+- Open-Circuit Voltage/Voc（V): 17.5V
+- Short-Circuit Current/lsc（A): 9.42
+- Max Power Voltage/Vmp（V): 14.0
+- Max Power Current/lmp（A): 8.57
+- Power Spectications at STC: 1000w/㎡，AM1.5,CELL25℃
+- Max System Voltage（V) 1000
+- Max Over Current Protecting Rating（A): 15
+- Weight: 12.6kg
 
 ### battery
 
@@ -46,18 +44,21 @@ Weight: 	12.6kg
 
 > fully charged is 12.6v to 12.8v
 
-State of Charge (approx.) | 12 Volt Battery | Volts per Cell
-100% | 12.70 | 2.12
-90% | 12.50 | 2.08
-80% | 12.42 | 2.07
-70% | 12.32 | 2.05
-60% | 12.20 | 2.03
-50% | 12.06 | 2.01
-40% | 11.90 | 1.98
-30% | 11.75 | 1.96
-20% | 11.58 | 1.93
-10% | 11.31 | 1.89
-0 | 10.50 | 1.75
+---
+| State of Charge (approx.) | 12 Volt Battery | Volts per Cell |
+---
+| 100% | 12.70 | 2.12 |
+| 90% | 12.50 | 2.08 |
+| 80% | 12.42 | 2.07 |
+| 70% | 12.32 | 2.05 |
+| 60% | 12.20 | 2.03 |
+| 50% | 12.06 | 2.01 |
+| 40% | 11.90 | 1.98 |
+| 30% | 11.75 | 1.96 |
+| 20% | 11.58 | 1.93 |
+| 10% | 11.31 | 1.89 |
+| 0 | 10.50 | 1.75 |
+---
 
 ### load (discharge) controller
 
