@@ -58,7 +58,7 @@ State of Charge (approx.) | 12 Volt Battery | Volts per Cell
 10% | 11.31 | 1.89
 0 | 10.50 | 1.75
 
-### load (discharge) controller
+### battery charge reader
 
 - BTE14-04 betamcu.cn Arduino Uno R3 Compatible
 - "DF Robot" LCD Keypad Shield
@@ -81,7 +81,15 @@ GND   GND
 
 ```
 
+### battery discharge controller
+
+to ensure the battery is never over-discharged, we should cut off extra power when the battery reaches a low enough voltage.
+
 TODO
+
+what we need is something like [this](http://nz.element14.com/infineon/bts500801teaauma1/power-load-sw-high-side-30v-to/dp/2480567)
+
+given time constraints, i wonder if [this](https://www.jaycar.co.nz/solid-state-relay-4-32vdc-input-30vdc-100a-switching/p/SY4086) works?
 
 ### 12v to 5v step-down (buck) converter
 
