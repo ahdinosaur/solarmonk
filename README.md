@@ -13,8 +13,8 @@ have fun! 🎉
 - [x] get solar panel
 - [x] get battery
 - [ ] 12v -> 5v converter
-- [ ] read battery charge
-- [ ] display battery charge
+- [x] read battery charge
+- [x] display battery charge
 - [ ] control discharge
 
 ## components
@@ -65,19 +65,19 @@ State of Charge (approx.) | 12 Volt Battery | Volts per Cell
 - R1 resistor = 10k ohms
 - R2 resistor = 820 ohms
 - ceramic capacitor = 100nF
-- schottkey diode
+- [schottky diode](https://en.wikipedia.org/wiki/Schottky_diode)
 
 ```
 
-12v   5v      5v
- |     |       |
-R1   diode  |-------|
- |     |    |       |
- +-----+----|Ain    |
- |     |    |       |
-R2    cap   |arduino|
- |     |    |-------|
-GND   GND
+12v  5v            5v
+ │    │             |
+R1    ⏄         ┌───┴───┐
+ │    │         │       │
+ ├────┼────┬────┤A1     │
+ │    │    │    │       │
+R2    ⏄    ═    │arduino│
+ │    │    │    └───────┘
+ ⏚    ⏚    ⏚
 
 ```
 
