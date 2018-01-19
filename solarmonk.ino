@@ -41,6 +41,7 @@ int lcd_key_in  = 0;
 void setup()
 {
  setup_lcd();
+ setup_battery_in();
 }
 
 void loop()
@@ -116,25 +117,14 @@ int read_lcd_buttons()
  return btnNONE; // when all others fail, return this...
 }
 
-// ripped from https://hackingmajenkoblog.wordpress.com/2016/02/01/making-accurate-adc-readings-on-the-arduino/
-long read_vcc () {
-  long result;
-  // Read 1.1V reference against AVcc
-  ADMUX = _BV(REFS0) | _BV(MUX3) | _BV(MUX2) | _BV(MUX1);
-  delay(2); // Wait for Vref to settle
-  ADCSRA |= _BV(ADSC); // Convert
-  while (bit_is_set(ADCSRA,ADSC));
-  result = ADCL;
-  result |= ADCH<<8;
-  result = 1125300L / result; // Back-calculate AVcc in mV
-  return result;
-}
-
 double read_battery_voltage () {
-  double vcc = read_vcc() / 1000.0;
   unsigned int battery_in = analogRead(BATTERY_IN_PIN);
-  double measured_voltage = (battery_in / 1024.0) * vcc;
-  double battery_voltage = mapf(measured_voltage, 0.0, 1.1252, 0.0, 14.8472);
+  double measured_voltage = (battery_in / 1024.0) * 1.1;
+  // 14.8472 = Vin when solving for
+  //   R2  = R1   * (1 / ((Vin / Vout) - 1)
+  //   820 = 10e3 * (1 / ((Vin / 1.1) - 1))
+  // which is the resistive divider equation being used
+  double battery_voltage = mapf(measured_voltage, 0.0, 1.1, 0.0, 14.5146);
   return battery_voltage;
 }
 
