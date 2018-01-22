@@ -35,7 +35,9 @@ using code from https://www.dfrobot.com/wiki/index.php/Arduino_LCD_KeyPad_Shield
 //   820 = 10e3 * (1 / ((Vin / 1.1) - 1))
 // which is the resistive divider equation being used
 #define V_BATTERY_MAX 14.8472
-#define PIN_BATTERY_IN A1
+#define PIN_BATTERY_VOLTAGE_IN A1
+
+#define PIN_BATTERY_AMPS_IN A2
 
 // select the pins used on the LCD panel
 LiquidCrystal lcd(8, 9, 4, 5, 6, 7);
@@ -60,6 +62,8 @@ int battery_status;
 
 double threshold = 0.5;
 
+double battery_amps;
+
 void setup()
 {
  setup_lcd();
@@ -68,15 +72,19 @@ void setup()
 
 void loop()
 { 
- lcd_key = read_lcd_buttons();
+ // lcd_key = read_lcd_buttons();
 
- battery_voltage = read_battery_voltage();
- battery_charge = get_battery_charge(battery_voltage);
- battery_status = get_battery_status(battery_charge);
- print_battery_status(battery_status, battery_charge);
- print_battery_voltage(battery_voltage);
+  battery_voltage = read_battery_voltage();
+  // battery_charge = get_battery_charge(battery_voltage);
+  // battery_status = get_battery_status(battery_charge);
+  // print_battery_status(battery_status, battery_charge);
+  print_greeting();
+  print_battery_voltage(battery_voltage);
 
- delay(100);
+  battery_amps = read_battery_amps();
+  print_battery_amps(battery_amps);
+
+  delay(100);
 }
 
 
@@ -87,7 +95,8 @@ void setup_lcd () {
 
 void setup_battery_in () {
   analogReference(INTERNAL); // set reference voltage used for analog input to 1.1v
-  pinMode(PIN_BATTERY_IN, INPUT);
+  pinMode(PIN_BATTERY_VOLTAGE_IN, INPUT);
+  pinMode(PIN_BATTERY_AMPS_IN, INPUT);
 }
 
 // read the buttons
@@ -105,7 +114,7 @@ int read_lcd_buttons()
 }
 
 double read_battery_voltage () {
-  unsigned int battery_in = analogRead(PIN_BATTERY_IN);
+  unsigned int battery_in = analogRead(PIN_BATTERY_VOLTAGE_IN);
   double measured_voltage = (battery_in / 1024.0) * V_REF;
   double battery_voltage = mapf(measured_voltage, 0.0, V_REF, 0.0, V_BATTERY_MAX);
   return battery_voltage;
@@ -142,6 +151,11 @@ void print_battery_status (int battery_status, double battery_charge) {
  }
 }
 
+void print_greeting () {
+  lcd.setCursor(0, 0);
+  lcd.print("solarpunk! =^.^=");
+}
+
 
 int get_battery_status (double battery_charge) {
   if (battery_charge <= 0) {
@@ -154,12 +168,30 @@ int get_battery_status (double battery_charge) {
     return BATTERY_HEALTHY;
   }
 }
+
 void print_battery_voltage (double battery_voltage) {
   lcd.setCursor(0, 1);
   lcd.print(battery_voltage);
-  lcd.setCursor(5, 2);
+  lcd.setCursor(6, 2);
   lcd.print('V');
 }
+
+double read_battery_amps () {
+  unsigned int amps_in = analogRead(PIN_BATTERY_AMPS_IN);
+  double measured_voltage = (amps_in / 1024.0) * V_REF;
+  double battery_amps = measured_voltage * (1000.0 / 66.0);
+  return battery_amps;
+}
+
+void print_battery_amps (double battery_amps) {
+  lcd.setCursor(9, 1);
+  lcd.print(battery_amps);
+  lcd.setCursor(15, 2);
+  lcd.print('A');
+}
+
+
+/* util */
 
 float mapf (float x, float in_min, float in_max, float out_min, float out_max) {
   return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
